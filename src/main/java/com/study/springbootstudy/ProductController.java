@@ -11,17 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-		@PostMapping
-		public Product createProduct(@RequestBody Product product) {
-			return product;
-		}
-		@PutMapping
-		public Product updateProduct(@PathVariable int id,
-									@RequestBody Product product) {
-			return product;
-		}
-		@DeleteMapping
-		public String delteProduct(@PathVariable int id) {
-			return "Delete product id = "+id;
-		}
+
+    @PostMapping
+    public Product createProduct(@RequestBody Product product) {
+        return product;
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProduct(
+            @PathVariable int id,
+            @RequestBody Product product) {
+        return product;
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteProduct(@PathVariable int id) {
+        return "Delete product id = " + id;
+    }
 }
