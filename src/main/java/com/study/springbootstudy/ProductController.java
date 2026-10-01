@@ -1,5 +1,7 @@
 package com.study.springbootstudy;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,5 +39,21 @@ public class ProductController {
         product.setStock(20);
 
         return product;
+    }
+    @GetMapping
+    public List<Product> getProducts(){
+    	Product p1 = new Product();
+        p1.setName("Java Book");
+        p1.setPrice(59.9);
+        p1.setStock(20);
+
+        Product p2 = new Product();
+        p2.setName("SQL Book");
+        p2.setPrice(49.9);
+        p2.setStock(15);
+
+        return List.of(p1, p2);
+    		
+    	
     }
 }
