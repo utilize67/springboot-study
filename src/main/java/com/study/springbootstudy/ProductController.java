@@ -19,8 +19,24 @@ public class ProductController {
 		this.productService = productService;
 	}
 	@GetMapping
-	public List<Product> getProduct() {
+	public List<Product> getAllProduct() {
 	    return productService.findAll();
 	}
-    
+	@GetMapping("/{id}")
+	public Product getById(@PathVariable int id) {
+		return productService.getById(id);
+	}
+	@PostMapping
+	public int createProduct(@RequestBody Product product) {
+		return productService.createProduct(product);
+	}
+	
+    @PutMapping("/{id}")
+    public int updateProduct(@PathVariable int id,@RequestBody Product product) {
+    	return productService.updateProduct(id, product);
+    }
+    @DeleteMapping("/{id}")
+    public int deleteById(@PathVariable int id) {
+    	return productService.deleteById(id);
+    }
 }
