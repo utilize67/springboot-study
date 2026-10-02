@@ -18,9 +18,9 @@ public class ProductController {
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
-	@GetMapping("/db-test")
-	public String testDatabase() {
-	    return productService.testConnection();
+	@GetMapping
+	public List<Product> getProduct() {
+	    return productService.findAll();
 	}
     
 }

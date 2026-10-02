@@ -2,25 +2,31 @@ package com.study.springbootstudy;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ProductRepository {
 
-    private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
-    public ProductRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public ProductRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public String testConnection() {
-        try (Connection connection = dataSource.getConnection()) {
-            return "Database connected";
-        } catch (SQLException e) {
-            return "Database connection failed";
-        }
+    public List<Product> findAll() {
+    	String sql = "select name,price,stock from product";
+    	return jdbcTemplate.query(sql, (rs,rowNum)->{
+    		Product p = new Product();
+    		p.setName(rs.getString("name"));
+    		p.setPrice(rs.getDouble("price"));
+    		p.setStock(rs.getInt("stock"));
+			return p;
+    	});
     }
 }

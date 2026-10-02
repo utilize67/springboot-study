@@ -1,5 +1,7 @@
 package com.study.springbootstudy;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,7 +10,6 @@ public class ProductService {
 		public ProductService(ProductRepository productRepository) {
 			this.productRepository = productRepository;
 		}
-		public String testConnection() {
-		    return productRepository.testConnection();
-		}
+		public List<Product> findAll(){
+		return productRepository.findAll();}
 }
